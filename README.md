@@ -99,3 +99,6 @@ $ make run
 ```
 
 ## 相关文档
+
+##注意事项
+    项目中.vscode/settings.jsonsettings.json 中的proto 路径 和vscode中设置的全局proto路径冲突，只能设置一个 项目路径会覆盖全局路径

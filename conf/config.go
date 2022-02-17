@@ -62,7 +62,7 @@ func (a *http) Addr() string {
 func newDefaultHTTP() *http {
 	return &http{
 		Host: "127.0.0.1",
-		Port: "8050",
+		Port: "8060",
 	}
 }
 
@@ -81,7 +81,7 @@ func (a *grpc) Addr() string {
 func newDefaultGRPC() *grpc {
 	return &grpc{
 		Host: "127.0.0.1",
-		Port: "18050",
+		Port: "18060",
 	}
 }
 
@@ -137,6 +137,7 @@ func (m *mongodb) GetDB() (*mongo.Database, error) {
 	if err != nil {
 		return nil, err
 	}
+	//keyauth
 	return conn.Database(m.Database), nil
 }
 
@@ -154,6 +155,7 @@ func (m *mongodb) getClient() (*mongo.Client, error) {
 		opts.SetAuth(cred)
 	}
 	opts.SetHosts(m.Endpoints)
+	//设置连接超时时间
 	opts.SetConnectTimeout(5 * time.Second)
 
 	// Connect to MongoDB

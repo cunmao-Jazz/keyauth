@@ -17,8 +17,9 @@ var (
 	svr = &service{}
 )
 
+// 用于存储Book的Collection
 type service struct {
-	col  *mongo.Collection
+	col  *mongo.Collection	
 	log  logger.Logger
 	book book.ServiceServer
 	book.UnimplementedServiceServer
@@ -30,6 +31,7 @@ func (s *service) Config() error {
 	if err != nil {
 		return err
 	}
+	//通过 DB的Collection 获取一个集合
 	s.col = db.Collection(s.Name())
 
 	s.log = zap.L().Named(s.Name())
